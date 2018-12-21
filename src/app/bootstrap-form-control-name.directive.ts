@@ -28,20 +28,12 @@ import {
 })
 export class BootstrapFormControlNameDirective extends FormControlName {
 
-  @Input('appBootstrapFormControlName') set controlName(newName: string) {
-    this.name = newName;
-  }
-
-  get controlName(): string {
-    return this.name;
-  }
-
   constructor(
     @Optional() @Host() @SkipSelf() parent: ControlContainer,
     @Optional() @Self() @Inject(NG_VALIDATORS) validators: Array<Validator | ValidatorFn>,
     @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array<AsyncValidator | AsyncValidatorFn>,
-    @Optional() @Inject(NG_VALUE_ACCESSOR) valueAccessors: ControlValueAccessor[]) {
-     super(parent, null, null, null, null);
+    @Optional() @Self() @Inject(NG_VALUE_ACCESSOR) valueAccessors: ControlValueAccessor[]) {
+     super(parent, validators, asyncValidators, valueAccessors, null);
   }
 
 }
